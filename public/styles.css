@@ -1,0 +1,39 @@
+/* resources/css/app.css */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+body {
+    background-color: rgb(214, 199, 199); /* Light gray background color */
+  }
+  
+  header {
+    background-color: #f9fc77; /* Header background color */
+    color: #ffffff; /* Header text color */
+    padding: 10px; /* Add padding for better aesthetics */
+  }
+  /* styles.css */
+
+/* Basic button styles */
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: 2px solid #34c2db; /* Border color */
+    color: #3477db; /* Text color */
+    background-color: #ffffff; /* Background color */
+    border-radius: 4px; /* Border radius for rounded corners */
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Smooth transition effects */
+  }
+  
+  /* Hover effect */
+  .button:hover {
+    background-color: #3498db; /* Hover background color */
+    color: #ffffff; /* Hover text color */
+    border-color: #ffffff; /* Hover border color */
+  }
+  
+  
