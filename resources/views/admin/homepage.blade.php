@@ -1,5 +1,4 @@
 <x-layout>
-  
 <div class="container py-md-5">
       <div class="row align-items-center">
         <div class="col-lg-5 pl-lg-5 pb-3 py-lg-5">
@@ -33,7 +32,7 @@
             @error('password_confirmation')
             <p class="m-0 small alret alert-danger shadow-sm">{{$message}}</p> 
             @enderror
-            <button type="submit" class="py-3 mt-4 btn btn-lg btn-primary btn-block">Sign up as Admin</button>
+            <button type="submit" class="py-3 mt-4 btn btn-lg btn-primary btn-block" style="background-color: rgba(38, 179, 179, 0.8)">Sign up as Admin</button>
           </form>
         </div>
       </div>

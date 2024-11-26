@@ -1,200 +1,226 @@
-body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Arial', sans-serif;
-    height: 150vh; /* Ensure enough content for scrolling */
-  }
-  
-  .parallax-navbar {
-    background-image: url('background.jpg'); /* Replace with your background image */
-    background-size: cover;
-    background-attachment: fixed;
-    height: 90vh;
-    position: relative;
-  }
-  
-  .navbar {
-    background-color: rgba(202, 174, 174, 0.8); /* Semi-transparent background for readability */
-    padding: 20px 0;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000; /* Ensure the navbar is above other content */
-  }
-  
-  .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .logo img {
-    max-height: 40px;
-  }
-  
-  .nav-links {
-    display: flex;
-    gap: 20px;
-  }
-  
-  .nav-links a {
-    text-decoration: none;
-    color: #333;
-    font-weight: 600;
-    font-size: 14px;
-    margin-right: 20px;
-    transition: color 0.3s ease; /* Smooth transition effect */
-  }
-  
-  .nav-links a:hover {
-    color: #ff5a5f; /* Hover color */
-  }
-  
-  .parallax-section {
-    padding: 95px 0;
-    text-align: center;
-    color: #fff;
-  }
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
-  .search-form {
-    background-color: #fff;
-    padding: 15px;
+.sidenav {
+    position: fixed;
+    top: 190px;
+    left: 10px;
+    background: #f3f3f3;
+    padding: 10px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: left;
-    display: inline-block;
-  }
+    width: 200px; 
+}
 
-  .search-form input,
-  .search-form button {
+.sidenav form {
+    margin-bottom: 10px;
+}
+
+.sidenav label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.sidenav input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+.sidenav button {
+    width: 100%;
     padding: 10px;
-    margin: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    color: #333; /* Text color */
-  }
-
-  .search-form input[type="date"] {
-    width: 150px;
-  }
-
-  .search-form button {
-    background-color: #ff5a5f;
+    background-color: rgb(37, 170, 170);
     color: #fff;
+    border: none;
+    border-radius: 4px;
     cursor: pointer;
-  }
+    transition: background-color 0.3s ease-in-out;
+}
 
-  .search-form button:hover {
-    background-color: #e54d52;
-  }
-  /* Add more styles as needed for your content */
-  
+.sidenav button:hover {
+    background-color: rgb(46, 197, 197);
+}
 
-  .card-container {
+.message-box {
+  text-align: center;
+  padding: 20px;
+  border-radius: 5px;
+  margin: 0 auto; 
+  width: fit-content; 
+}
+
+.sidebar-right {
+position: fixed;
+  top: 170px;
+  left: 10px;
+  background: #eee;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 210px;
+  width: 200px; 
+}
+
+
+.sidebar-right form {
+  margin-bottom: 10px;
+}
+
+.sidebar-right label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.sidebar-right select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.sidebar-right button {
+  width: 100%;
+  padding: 10px;
+  background-color: rgb(37, 170, 170);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.sidebar-right button:hover {
+  background-color: rgb(46, 197, 197);
+}
+.main-content {
+    margin-left: 220px; 
+    display: flex;
+}
+
+
+
+body {
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    align-items: center;
-  }
+}
 
-  .card {
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    margin: 15px;
-    padding: 20px;
-    width: 700px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out;
-  }
+footer {
+    margin-top: auto;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
 
-  .card:hover {
-    transform: scale(1.05);
-  }
 
-  .card img {
+.hotel-details {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+
+.hotel-info {
+    flex: 0 0 60%;
+}
+
+.hotel-location {
+    margin-bottom: 20px;
+}
+
+.hotel-description {
+    margin-top: 20px;
+}
+
+.hotel-images {
+    flex: 0 0 35%;
+}
+
+.hotel-images img {
     width: 100%;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 4px;
-    margin-bottom: 10px;
-  }
+    height: auto;
+    border-radius: 5px;
+}
 
-  .card h2 {
-    font-size: 18px;
-    margin-bottom: 10px;
-  }
 
-  .card p {
-    font-size: 14px;
-    color: #666;
-  }
+.booking-options {
+    margin-bottom: 50px;
+}
 
-  .card a {
-    display: inline-block;
-    padding: 8px 16px;
+.booking-button {
+    padding: 10px 20px;
     background-color: #007bff;
     color: #fff;
     text-decoration: none;
-    border-radius: 4px;
-    transition: background-color 0.3s ease-in-out;
-  }
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
 
-  .card a:hover {
+.booking-button:hover {
     background-color: #0056b3;
-  }
+}
 
-/* 
-///////////////
-    .card-container {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      padding: 20px;
-    }
 
-    .card {
-      background-color: #fff;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      margin: 15px 0;
-      padding: 20px;
-      width: 300px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease-in-out;
-    }
+.availability-check {
+    margin-bottom: 50px;
+}
 
-    .card:hover {
-      transform: scale(1.05);
-    }
+.availability-check form {
+    display: flex;
+    align-items: center;
+}
 
-    .card img {
-      width: 100%;
-      height: 150px;
-      object-fit: cover;
-      border-radius: 4px;
-      margin-bottom: 10px;
-    }
+.availability-check input[type="date"] {
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
 
-    .card h2 {
-      font-size: 18px;
-      margin-bottom: 10px;
-    }
+.availability-check button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
 
-    .card p {
-      font-size: 14px;
-      color: #666;
-    }
+.availability-check button:hover {
+    background-color: #218838;
+}
 
-    .btn-primary {
-      display: inline-block;
-      padding: 8px 16px;
-      background-color: #007bff;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 4px;
-      transition: background-color 0.3s ease;
-    }
 
-    .btn-primary:hover {
-      background-color: #0056b3;
-    } */
+.reviews .review {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 20px;
+}
+
+.review p {
+    margin: 0;
+}
+
+.container1 {
+  padding: 20px;
+}
+
+.card1{
+  padding: 10px;
+  border: none;
+}
+
+
+.container-wrapper {
+    background-color: #f0f8ff; 
+    border-radius: 20px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    padding: 20px; 
+    margin-left: 20px; 
+}
+
+.bigger-stylish-title {
+    font-size: 30px; 
+    font-weight: bold; 
+    font-family: "times new roman"; 
+}
