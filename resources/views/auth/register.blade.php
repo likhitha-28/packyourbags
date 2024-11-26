@@ -1,4 +1,8 @@
 <x-guest-layout>
+
+    <div class="container mx-auto flex justify-center items-center h-screen">
+        <!-- Centered container -->
+        <div class="w-full max-w-md">
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
@@ -49,4 +53,6 @@
             </x-primary-button>
         </div>
     </form>
+    </div>
+    </div>
 </x-guest-layout>

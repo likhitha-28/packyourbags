@@ -1,7 +1,8 @@
 <x-guest-layout>
-    <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
-
+    <div class="container mx-auto flex justify-center items-center h-screen">
+        <!-- Centered container -->
+        <div class="w-full max-w-md">
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
@@ -44,4 +45,6 @@
             </x-primary-button>
         </div>
     </form>
+    </div>
+    </div>    
 </x-guest-layout>

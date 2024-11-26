@@ -1,115 +1,59 @@
-@extends('layouts.home')
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
-  <title>PackYourBags</title>
-</head>
-<body>
+<x-welcomelayout>
+    <div class="main-content">
+        <section>      
+            <div class="card-container">
+                @foreach($approvedHotels as $hotel)
+                <?php 
+                    $firstImage = optional($hotel->hotelImages->first())->image_url_1;
+                    $reviews = collect(); // Initialize an empty collection to store all reviews
 
-  <header class="parallax-navbar">
-    <nav class="navbar">
-      <div class="container">
-        <div class="logo">
-          <img src="https://www.pokemon.co.jp/ex/sun_moon/common/images/pokemon/160901_02/portrait01.png" alt="Logo">
-        </div>
-        <div class="nav-links">
-          <a href="#">Home</a>
-          <a href="#">About</a>
-          <a href="#">Services</a>
-          <a href="#">Join Us</a>
-          @if (Route::has('login'))
-              @auth
-                  <a href="{{ url('/dashboard') }}">Dashboard</a>
-                  @else
-                      <a href="{{ route('login') }}">Log in</a>
+                    foreach ($hotel->availabilities as $availability) {
+                        $accommodation = $availability->approvedaccommodation;
+                        if ($accommodation) {
+                            $reviews = $reviews->merge($accommodation->reviews);
+                        }
+                    }
 
-                  @if (Route::has('register'))
-                  <a href="{{ route('register') }}">Register</a>
-                  @endif
-              @endauth
-          @endif
-          <a href="{{ url('/admin')}}">go admin page</a>
-          <div class="relative ml-3 justify-items-end">
-            <button type="button" class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
-              <span class="absolute -inset-1.5"></span>
-              <span class="sr-only">Open user menu</span>
-              <img class="h-8 w-8 rounded-full" src="https://www.shutterstock.com/image-vector/kudus-indonesia-february-19-2024-260nw-2426973581.jpg" alt="">
-            </button>
-          </div>
-        </div>
-      </div>
-    </nav>
-    <section class="parallax-section">
-      <div class="search-container">
-        <form class="search-form form-group">
-          <input type="text" id="search" placeholder="Search">
-          <input type="date" placeholder="From Date">
-          <input type="date" placeholder="To Date">
-          <input type="number" placeholder="Number of People">
-          <button type="submit">Search</button>
-        </form>
-      </div>
-      
+                    $averageRatings = [
+                        'cleanliness' => $reviews->avg('cleanliness'),
+                        'accessibility' => $reviews->avg('accessibility'),
+                        'staff' => $reviews->avg('staff'),
+                        'location' => $reviews->avg('location'),
+                        'value_for_money' => $reviews->avg('value_for_money')
+                    ];
 
-      <div class="card-container">
-        <!-- Hotel Card 1 -->
-        <div class="card">
-          <img src="hotel1.jpg" alt="Hotel 1">
-          <h2>Hotel One</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          <a href="#">Book Now</a>
-        </div>
-    
-        <!-- Hotel Card 2 -->
-        <div class="card">
-          <img src="hotel2.jpg" alt="Hotel 2">
-          <h2>Hotel Two</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          <a href="#">Book Now</a>
-        </div>
-    
-        <div class="card">
-          <img src="hotel2.jpg" alt="Hotel 2">
-          <h2>Hotel Two</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          <a href="#">Book Now</a>
-        </div>
-    
-        <div class="card">
-          <img src="hotel2.jpg" alt="Hotel 2">
-          <h2>Hotel Two</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          <a href="#">Book Now</a>
-        </div>
-    
-        <div class="card">
-          <img src="hotel2.jpg" alt="Hotel 2">
-          <h2>Hotel Two</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          <a href="#">Book Now</a>
-        </div>
-    
-        <div class="card">
-          <img src="hotel2.jpg" alt="Hotel 2">
-          <h2>Hotel Two</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          <a href="#">Book Now</a>
-        </div>
-        <!-- Add more hotel cards as needed -->
-      </div>
-    
+                    // Calculate overall average including all ratings
+                    $overallAverage = $reviews->isEmpty() ? 0 : array_sum($averageRatings) / count($averageRatings);
+                ?>
 
-    </section>
-  </header>
-  <section class="parallax-section">
-    <!-- Your page content goes here -->
-    <h1>contents</h1>
-  </section>
-</body>
-</html>
+                <a href="/booking-page/{{ $hotel->name }}" class="card-link">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="content-left">
+                                
+                                <h2>{{ $hotel->name }}</h2>
+                                <p>{{ $hotel->description}}</p>
+                                @if($overallAverage > 0)
+                                <span class="badge text-bg-primary">Average Rating: {{ $overallAverage }}</span>
+                                    
+                                @else
+                                    <p>No reviews yet</p>
+                                @endif
 
-
-
+                                <a href="/booking-page/{{ $hotel->name }}" class="book_button">Check availabilities</a>
+                            </div>
+                            <div class="content-right">
+                                @if($firstImage)
+                                    <img src="{{ $firstImage }}" alt="{{ $hotel->name }}" style="max-height: 4cm; max-width: 5cm; height: 4cm; width: 5cm;">
+                                @else       
+                                    <img src="{{ 'https://shorturl.at/dgpY1' }}" alt="Default Image">
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                @endforeach
+            </div>
+        </section>
+    </div>
+</x-welcomelayout>
